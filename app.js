@@ -1,9 +1,9 @@
 // app.js
 
-const express = require('express');
-const connectDB = require('./config/db');
-const cors = require('cors');
-const path = require('path');
+const express = require("express");
+const connectDB = require("./config/db");
+const cors = require("cors");
+const path = require("path");
 // const basicAuth = require('express-basic-auth');
 // const cookieParser = require('cookie-parser');
 
@@ -15,7 +15,7 @@ const path = require('path');
 // });
 
 // routes
-// const items = require('./routes/items');  //use this when implementing routes
+const review = require("./routes/Review"); //use this when implementing routes
 
 const app = express();
 
@@ -31,18 +31,19 @@ app.use(express.json({ extended: false }));
 // app.get('/', (req, res) => res.send('Hello world!'));
 
 // use Routes
-// app.use('/api/items', items);  //use this when implementing routes
+app.use("/api/review", review); //use this when implementing routes
 
 app.use(express.json({ extended: false }));
 
-const PORT = process.env.PORT || 5006;
+const PORT = process.env.PORT || 5009;
 
 // app.listen(port, () => console.log(`Server running on port ${port}`));
 
 // app.use(cookieParser('82e4e438a0705fabf61f9854e3b575af'));
 
-app.use(express.static(path.join(__dirname, '/client/build')))
-   .listen(PORT, () => console.log(`Listening on ${PORT}`));
+app
+  .use(express.static(path.join(__dirname, "/client/build")))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 // app.get('/', (req, res) => {
 //    res.sendFile(path.join(__dirname, '/client/build/index.html'));
